@@ -1,0 +1,25 @@
+{
+  "name": "node-meatcam",
+  "version": "0.0.0",
+  "description": "Drives a Meatcam on a Raspi",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*_spec.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/imakewebthings/node-meatcam.git"
+  },
+  "keywords": [
+    "meat"
+  ],
+  "author": "Caleb Troughton <caleb@imakewebthings.com> (http://imakewebthings.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/imakewebthings/node-meatcam/issues"
+  },
+  "homepage": "https://github.com/imakewebthings/node-meatcam",
+  "dependencies": {
+    "nconf": "~0.6.9"
+  }
+}
