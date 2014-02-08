@@ -4,6 +4,7 @@
   "description": "Drives a Meatcam on a Raspi",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "mocha test/*_spec.js"
   },
   "repository": {
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/imakewebthings/node-meatcam",
   "dependencies": {
-    "nconf": "~0.6.9"
+    "nconf": "~0.6.9",
+    "camelot": "0.0.4"
   }
 }
