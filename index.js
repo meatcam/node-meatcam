@@ -10,4 +10,8 @@ camera.on('frame', function(imagedata) {
   console.log(imagedata);
 });
 
+camera.on('error', function(error) {
+  console.log(error);
+});
+
 camera.grab();
