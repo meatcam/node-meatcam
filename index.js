@@ -7,7 +7,8 @@ var PNG = require('png-js');
 var camera = new Camelot({
   device: '/dev/video0',
   resolution: '160x120',
-  'no-banner': ''
+  'no-banner': '',
+  verbose: false
 });
 var encoder = new GIFEncoder(160, 120);
 var frameCount = 0;
@@ -17,7 +18,7 @@ var interval;
 encoder.createReadStream().pipe(fs.createWriteStream('test.gif'));
 encoder.start();
 encoder.setRepeat(0);
-encoder.setDelay(100);
+encoder.setDelay(200);
 
 camera.on('frame', function(imagedata) {
   var png = new PNG(imagedata);
@@ -39,4 +40,4 @@ interval = setInterval(function() {
     clearInterval(interval);
     encoder.finish();
   }
-}, 100);
+}, 200);
