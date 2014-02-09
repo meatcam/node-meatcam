@@ -22,6 +22,9 @@
   "homepage": "https://github.com/imakewebthings/node-meatcam",
   "dependencies": {
     "nconf": "~0.6.9",
-    "camelot": "0.0.4"
+    "camelot": "0.0.4",
+    "gm": "~1.14.2",
+    "gif": "https://github.com/dariusk/node-gif/archive/master.tar.gz",
+    "gifencoder": "~1.0.3"
   }
 }

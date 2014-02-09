@@ -1,5 +1,7 @@
-var Camelot = require('camelot');
+'use strict';
 
+var Camelot = require('camelot');
+var gifencoder = require('gifencoder');
 var camera = new Camelot({
   device: '/dev/video0',
   resolution: '135x101',
@@ -7,7 +9,7 @@ var camera = new Camelot({
 });
 
 camera.on('frame', function(imagedata) {
-  console.log(imagedata);
+  console.log(Object.keys(imagedata));
 });
 
 camera.on('error', function(error) {
