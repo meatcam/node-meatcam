@@ -6,7 +6,7 @@ var GIFEncoder = require('gifencoder');
 var PNG = require('png-js');
 var camera = new Camelot({
   device: '/dev/video0',
-  resolution: '160x120',
+  resolution: '320x240',
   'no-banner': ''
 });
 var encoder = new GIFEncoder(160, 120);
