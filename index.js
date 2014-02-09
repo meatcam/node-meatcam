@@ -14,7 +14,7 @@ var interval;
 encoder.createReadStream().pipe(fs.createWriteStream('test.gif'));
 encoder.start();
 encoder.setRepeat(0);
-encoder.setDelay(10);
+encoder.setDelay(100);
 
 camera.on('frame', function(imagedata) {
   encoder.addFrame(imagedata);
