@@ -18,8 +18,7 @@ encoder.setRepeat(0);
 encoder.setDelay(100);
 
 camera.on('frame', function(imagedata) {
-  fs.writeFileSync('test.png', imagedata);
-  //encoder.addFrame(imagedata);
+  encoder.addFrame(imagedata);
 });
 
 camera.on('error', function(error) {
@@ -27,12 +26,12 @@ camera.on('error', function(error) {
 });
 
 interval = setInterval(function() {
-  if (frameCount < 1) {
-    camera.grab();
+  if (frameCount < 20) {
     frameCount++;
+    camera.grab();
   }
   else {
     clearInterval(interval);
     encoder.finish();
   }
-});
+}, 100);
