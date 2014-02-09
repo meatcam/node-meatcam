@@ -1,10 +1,11 @@
 'use strict';
 
+var fs = require('fs');
 var Camelot = require('camelot');
 var GIFEncoder = require('gifencoder');
 var camera = new Camelot({
   device: '/dev/video0',
-  resolution: '135x101',
+  resolution: '160x120',
   'no-banner': ''
 });
 var encoder = new GIFEncoder(160, 120);
@@ -17,7 +18,8 @@ encoder.setRepeat(0);
 encoder.setDelay(100);
 
 camera.on('frame', function(imagedata) {
-  encoder.addFrame(imagedata);
+  fs.writeFileSync('test.png', imagedata);
+  //encoder.addFrame(imagedata);
 });
 
 camera.on('error', function(error) {
@@ -25,7 +27,7 @@ camera.on('error', function(error) {
 });
 
 interval = setInterval(function() {
-  if (frameCount < 20) {
+  if (frameCount < 1) {
     camera.grab();
     frameCount++;
   }
