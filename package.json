@@ -23,6 +23,7 @@
   "dependencies": {
     "nconf": "~0.6.9",
     "camelot": "0.0.4",
-    "gifencoder": "~1.0.3"
+    "gifencoder": "~1.0.3",
+    "png-js": "~0.1.1"
   }
 }
