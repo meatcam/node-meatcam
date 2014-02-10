@@ -9,6 +9,7 @@ app.set('view engine', 'jade');
 app.set('view options', { layout: false })
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.basicAuth(config.get('username'), config.get('password')));
+app.use(express.bodyParser());
 
 app.get('/', function(req, res) {
   res.render('index');
