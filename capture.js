@@ -29,8 +29,8 @@ module.exports = function(opts, callback) {
   function compress() {
     exec([
       'gifsicle -O2 -o',
-      options.tempOutput,
-      options.tempMinified
+      options.tempMinified,
+      options.tempOutput
     ].join(' '), function(err) {
       if (err) throw err;
       base64();
