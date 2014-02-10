@@ -23,7 +23,5 @@ app.post('/', function(req, res) {
   });
 });
 
-console.log(config.get());
-
 app.listen(config.get('port'));
 console.log('Meatcam started on port ' + config.get('port'));
