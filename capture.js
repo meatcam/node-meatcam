@@ -19,9 +19,11 @@ module.exports = function(opts, callback) {
   }
 
   function base64() {
-    fs.readFile(options.tempMinified, function(err, data) {
+    fs.readFile(options.tempMinified, {
+      encoding: 'base64'
+    }, function(err, data) {
       if (err) throw err;
-      callback(data.toString());
+      callback(data);
       clean();
     });
   }
