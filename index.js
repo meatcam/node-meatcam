@@ -25,7 +25,7 @@ function capture(callback) {
   exec('avconv -f video4linux2 -i /dev/video0 -r 10 -s 320x240 -t 2 -pix_fmt rgb24 -vf format=rgb8,format=rgb24 out.gif', function(err) {
     callback();
   });
-});
+}
 
 capture(compress(base64(function() {
   // DO THING
