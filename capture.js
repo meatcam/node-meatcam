@@ -6,7 +6,7 @@ var _ = require('lodash');
 
 module.exports = function(opts, callback) {
   var options = _.mapValues(opts, function(value) {
-    return value.toString().replace(/\s/g, '');
+    return ('' + value).replace(/\s/g, '');
   });
 
   function clean() {
