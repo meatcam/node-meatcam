@@ -3,37 +3,55 @@
 var fs = require('fs');
 var exec = require('child_process').exec;
 
-function clean() {
-  fs.unlink('out.gif', function(err) {
-    console.log('out cleaned');
-    fs.unlink('outmin.gif', function(){
-      console.log('min cleaned');
+module.exports = function(options, callback) {
+  function clean() {
+    fs.unlink(options.tempOutput, function(err) {
+      if (err) throw err;
     });
-  });
-}
+    fs.unlink(options.tempMinified, function(err){
+      if (err) throw err;
+    });
+  }
 
-function base64(callback) {
-  fs.readFile('outmin.gif', function(err, data) {
-    console.log('64ed');
-    callback(data.toString());
-    //clean();
-  });
-}
+  function base64() {
+    fs.readFile(options.tempMinified, function(err, data) {
+      if (err) throw err;
+      callback(data.toString());
+      clean();
+    });
+  }
 
-function compress(callback) {
-  exec('gifsicle -O2 -o outmin.gif out.gif', function(err) {
-    console.log('compressed');
-    base64(callback);
-  });
-}
+  function compress() {
+    exec([
+      'gifsicle -O2 -o',
+      options.tempOutput,
+      options.tempMinified
+    ].join(' '), function(err) {
+      if (err) throw err;
+      base64();
+    });
+  }
 
-function capture(callback) {
-  exec('avconv -f video4linux2 -i /dev/video0 -r 10 -s 320x240 -t 2 -pix_fmt rgb24 -vf format=rgb8,format=rgb24 out.gif', function(err) {
-    console.log('captured');
-    compress(callback);
-  });
-}
+  var options = {
+    input: '/dev/video0',
+    fps: '10',
+    size: '320x240',
+    seconds: '2',
+    tempOutput: 'tmp/out.gif',
+    tempMinified: 'tmp/outmin.gif'
+  };
 
-capture(function() {
-  console.log('finished');
-});
+  exec([
+    'avconv',
+    '-f', 'video4linux2',
+    '-i', options.input,
+    '-r', options.fps,
+    '-s', options.size,
+    '-t', options.seconds,
+    '-pix_fmt rgb24 -vf format=rgb8,format=rgb24',
+    options.tempOutput
+  ].join(' '), function(err) {
+    if (err) throw err;
+    compress();
+  });
+};
