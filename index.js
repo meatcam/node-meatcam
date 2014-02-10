@@ -1,4 +1,4 @@
-var config = require('nconf').argv().env().file('config.json');
+var config = require('nconf').file('config.json');
 var capture = require('./capture');
 var express = require('express');
 var app = express();
@@ -17,11 +17,13 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   console.log(req.params.message);
-  capture(nconf.get(), function(gif) {
+  capture(config.get(), function(gif) {
     console.log(gif);
     res.redirect('/');
   });
 });
+
+console.log(config.get());
 
 app.listen(config.get('port'));
 console.log('Meatcam started on port ' + config.get('port'));
