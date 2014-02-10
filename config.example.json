@@ -1,0 +1,11 @@
+{
+  "input": "/dev/video0",
+  "fps": 10,
+  "size": "320x240",
+  "seconds": 2,
+  "tempOutput": "tmp/out.gif",
+  "tempMinified": "tmp/outmin.gif",
+  "port": 5000,
+  "username": "camera",
+  "password": "lovesecretsexgod"
+}

@@ -4,8 +4,7 @@
   "description": "Drives a Meatcam on a Raspi",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha test/*_spec.js"
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +22,10 @@
   "dependencies": {
     "nconf": "~0.6.9",
     "avconv": "~1.0.1",
-    "gifsicle": "~0.1.4"
+    "gifsicle": "~0.1.4",
+    "express": "~3.4.8",
+    "lodash": "~2.4.1",
+    "jade": "~1.1.5",
+    "nodemon": "~1.0.14"
   }
 }

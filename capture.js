@@ -2,8 +2,13 @@
 
 var fs = require('fs');
 var exec = require('child_process').exec;
+var _ = require('lodash');
 
-module.exports = function(options, callback) {
+module.exports = function(opts, callback) {
+  var options = _.mapValues(opts(function(value) {
+    return value.replace(/\s/g, '');
+  });
+
   function clean() {
     fs.unlink(options.tempOutput, function(err) {
       if (err) throw err;
@@ -31,15 +36,6 @@ module.exports = function(options, callback) {
       base64();
     });
   }
-
-  var options = {
-    input: '/dev/video0',
-    fps: '10',
-    size: '320x240',
-    seconds: '2',
-    tempOutput: 'tmp/out.gif',
-    tempMinified: 'tmp/outmin.gif'
-  };
 
   exec([
     'avconv',
