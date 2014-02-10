@@ -17,7 +17,7 @@ app.get('/', function(req, res) {
 
 app.post('/', function(req, res) {
   console.log(req.params.message);
-  capture(function(gif) {
+  capture(nconf.get(), function(gif) {
     console.log(gif);
     res.redirect('/');
   });
