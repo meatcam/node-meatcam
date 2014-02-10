@@ -5,7 +5,7 @@ var exec = require('child_process').exec;
 var _ = require('lodash');
 
 module.exports = function(opts, callback) {
-  var options = _.mapValues(opts(function(value) {
+  var options = _.mapValues(opts, function(value) {
     return value.replace(/\s/g, '');
   });
 
