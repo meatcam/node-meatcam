@@ -12,22 +12,20 @@ function clean() {
 function base64(callback) {
   fs.readFile('outmin.gif', function(err, data) {
     callback(data.toString());
+    //clean();
   });
 }
 
 function compress(callback) {
   exec('gifsicle -O2 -o outmin.gif out.gif', function(err) {
-    callback();
+    base64(callback);
   });
 }
 
 function capture(callback) {
   exec('avconv -f video4linux2 -i /dev/video0 -r 10 -s 320x240 -t 2 -pix_fmt rgb24 -vf format=rgb8,format=rgb24 out.gif', function(err) {
-    callback();
+    compress(callback);
   });
 }
 
-capture(compress(base64(function() {
-  // DO THING
-  // clean();
-})));
+capture(function() {});
