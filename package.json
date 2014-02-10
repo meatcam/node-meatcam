@@ -22,8 +22,7 @@
   "homepage": "https://github.com/imakewebthings/node-meatcam",
   "dependencies": {
     "nconf": "~0.6.9",
-    "camelot": "0.0.4",
-    "gifencoder": "~1.0.3",
-    "png-js": "~0.1.1"
+    "avconv": "~1.0.1",
+    "gifsicle": "~0.1.4"
   }
 }

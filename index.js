@@ -1,43 +1,17 @@
 'use strict';
 
+var avconv = require('avconv');
+var gifsicle = require('gifsicle');
 var fs = require('fs');
-var Camelot = require('camelot');
-var GIFEncoder = require('gifencoder');
-var PNG = require('png-js');
-var camera = new Camelot({
-  device: '/dev/video0',
-  resolution: '160x120',
-  'no-banner': '',
-  verbose: false
-});
-var encoder = new GIFEncoder(160, 120);
-var frameCount = 0;
-var fileCount = 0;
-var interval;
 
-encoder.createReadStream().pipe(fs.createWriteStream('test.gif'));
-encoder.start();
-encoder.setRepeat(0);
-encoder.setDelay(200);
+var params = [
+  '-f', 'video4linux2',
+  '-i', '/dev/video0',
+  '-r', '10',
+  '-s', '320x240',
+  '-t', '2',
+  '-pix_fmt', 'rgb24',
+  '-vf', 'format=rgb8,format=rgb24'
+];
 
-camera.on('frame', function(imagedata) {
-  var png = new PNG(imagedata);
-  png.decode(function(pixels) {
-    encoder.addFrame(pixels);
-  });
-});
-
-camera.on('error', function(error) {
-  console.log(error);
-});
-
-interval = setInterval(function() {
-  if (frameCount < 20) {
-    frameCount++;
-    camera.grab();
-  }
-  else {
-    clearInterval(interval);
-    encoder.finish();
-  }
-}, 200);
+avconv(params).pipe(fs.createWriteStream('test.gif'));
