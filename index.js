@@ -30,4 +30,4 @@ function capture(callback) {
 capture(compress(base64(function() {
   // DO THING
   // clean();
-});
+})));
