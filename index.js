@@ -3,6 +3,7 @@ var capture = require('./capture');
 var express = require('express');
 var app = express();
 var path = require('path');
+var request = require('request');
 
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -16,12 +17,11 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  console.log(req.params.message);
   capture(config.get(), function(gif) {
     request.post(config.get('meatEndpoint'), {
       apiKey: config.get('apiKey'),
       fingerprint: config.get('fingerprint'),
-      message: req.params.message,
+      message: req.body.message,
       picture: 'data:image/gif;base64,' + gif
     }, function(err) {
       res.redirect('/');
