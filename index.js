@@ -24,6 +24,7 @@ app.post('/', function(req, res) {
       message: req.body.message,
       picture: 'data:image/gif;base64,' + gif
     }, function(err) {
+      if (err) throw err;
       res.redirect('/');
     });
   });
