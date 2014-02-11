@@ -19,10 +19,12 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
   capture(config.get(), function(gif) {
     request.post(config.get('meatEndpoint'), {
-      apiKey: config.get('apiKey'),
-      fingerprint: config.get('fingerprint'),
-      message: req.body.message,
-      picture: 'data:image/gif;base64,' + gif
+      form: {
+        apiKey: config.get('apiKey'),
+        fingerprint: config.get('fingerprint'),
+        message: req.body.message,
+        picture: 'data:image/gif;base64,' + gif
+      }
     }, function(err) {
       if (err) throw err;
       res.redirect('/');
