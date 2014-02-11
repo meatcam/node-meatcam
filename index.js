@@ -18,8 +18,14 @@ app.get('/', function(req, res) {
 app.post('/', function(req, res) {
   console.log(req.params.message);
   capture(config.get(), function(gif) {
-    console.log(gif);
-    res.redirect('/');
+    request.post(config.get('meatEndpoint'), {
+      apiKey: config.get('apiKey'),
+      fingerprint: config.get('fingerprint'),
+      message: req.params.message,
+      picture: 'data:image/gif;base64,' + gif
+    }, function(err) {
+      res.redirect('/');
+    });
   });
 });
 

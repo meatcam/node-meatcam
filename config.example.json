@@ -7,5 +7,8 @@
   "tempMinified": "tmp/outmin.gif",
   "port": 5000,
   "username": "camera",
-  "password": "lovesecretsexgod"
+  "password": "lovesecretsexgod",
+  "apiKey": "MEATSPACEAPIKEY",
+  "fingerprint": "MEATSPACEFINGERPRINT",
+  "meatEndpoint": "http://chat-staging.meatspac.es/add/chat"
 }
