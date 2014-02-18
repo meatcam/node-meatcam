@@ -1,10 +1,23 @@
 doctype html
-head
-  title Meatcam
-  meta(charset='utf-8')
+html
+  head
+    title Meatcam
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(name='apple-mobile-web-app-captable', content='yes')
+    link(rel='stylesheet', href='/styles.css', type='text/css')
 
-body
-  .wrapper
-    form(method='post', action='/')
-      input(type='text', name='message', maxlength='250')
-      input(type='submit', value='Send Message')
+  body
+    .wrapper
+      h1 Meatcam
+
+      form.interval(method='post', action'.')
+        label Interval (seconds):
+        input(type='number', name='interval', value='0', min='0', max='9999', step='1')
+        input(type='submit', value='Update')
+
+      form.update(method='post', action='/')
+        input.message(type='text', name='message', maxlength='250', placeholder='What are you up to?')
+        input.send(type='submit', value='Send Message')
+    script(src='/zepto.min.js')
+    script(src='/scripts.js')
