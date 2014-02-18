@@ -17,7 +17,6 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-    /*
   capture(config.get(), function(gif) {
     request.post(config.get('meatEndpoint'), {
       form: {
@@ -31,8 +30,6 @@ app.post('/', function(req, res) {
       res.redirect('/');
     });
   });
-    */
-  res.redirect('/');
 });
 
 app.listen(config.get('port'));
