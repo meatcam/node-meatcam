@@ -12,10 +12,10 @@ module.exports = function(opts, callback) {
   function clean() {
     try {
       fs.unlinkSync(options.tempOutput);
-    } catch {}
+    } catch(e) {}
     try {
       fs.unlinkSync(options.tempMinified);
-    } catch {}
+    } catch(e) {}
   }
 
   function base64() {
