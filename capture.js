@@ -30,8 +30,9 @@ module.exports = function(opts, callback) {
 
   function compress() {
     exec([
-      'gifsicle -O2 -o',
-      options.tempMinified,
+      'gifsicle -O2',
+      '-d', options.delay,
+      '-o', options.tempMinified,
       options.tempOutput
     ].join(' '), function(err) {
       if (err) throw err;
