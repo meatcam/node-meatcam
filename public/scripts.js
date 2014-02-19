@@ -12,8 +12,7 @@
       clearTimeout(timer);
       if (seconds) {
         timer = window.setTimeout(function() {
-          submitUpdate();
-          setupInterval();
+          submitUpdate(setupInterval);
         }, seconds);
       }
     }
@@ -22,7 +21,6 @@
       $send.attr('disabled', 'disabled');
       $.post($update.attr('action'), $update.serialize(), function() {
         $send.removeAttr('disabled');
-        setupInterval();
         if (callback) callback();
       });
     }

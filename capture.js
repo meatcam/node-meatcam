@@ -10,12 +10,8 @@ module.exports = function(opts, callback) {
   });
 
   function clean() {
-    fs.unlink(options.tempOutput, function(err) {
-      if (err) throw err;
-    });
-    fs.unlink(options.tempMinified, function(err){
-      if (err) throw err;
-    });
+    fs.unlinkSync(options.tempOutput);
+    fs.unlinkSync(options.tempMinified);
   }
 
   function base64() {
@@ -39,9 +35,11 @@ module.exports = function(opts, callback) {
     });
   }
 
+  clean();
   exec([
     'avconv',
     '-f', 'video4linux2',
+    '-ss', '0:0:1',
     '-i', options.input,
     '-r', options.fps,
     '-s', options.size,
