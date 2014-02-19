@@ -10,8 +10,12 @@ module.exports = function(opts, callback) {
   });
 
   function clean() {
-    fs.unlinkSync(options.tempOutput);
-    fs.unlinkSync(options.tempMinified);
+    try {
+      fs.unlinkSync(options.tempOutput);
+    } catch {}
+    try {
+      fs.unlinkSync(options.tempMinified);
+    } catch {}
   }
 
   function base64() {
