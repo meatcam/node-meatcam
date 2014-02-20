@@ -11,5 +11,9 @@
   "password": "lovesecretsexgod",
   "apiKey": "MEATSPACEAPIKEY",
   "fingerprint": "MEATSPACEFINGERPRINT",
-  "meatEndpoint": "http://chat-staging.meatspac.es/add/chat"
+  "meatEndpoint": "http://chat-staging.meatspac.es/add/chat",
+  "tvMeatEndpoint": "https://meatspaces.tv/api/add/show",
+  "tvApiKey": "TVAPIKEY",
+  "twitterUsername": "YOURTWITTERUSERNAME",
+  "twitterId": "YOURTWITTERID"
 }

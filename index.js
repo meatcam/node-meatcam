@@ -17,13 +17,18 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
+  var key = config.get(config.get('target') === 'tv' ? 'tvApiKey' : 'apiKey');
   capture(config.get(), function(gif) {
     request.post(config.get('meatEndpoint'), {
       form: {
-        apiKey: config.get('apiKey'),
+        apiKey: key,
         fingerprint: config.get('fingerprint'),
         message: req.body.message,
-        picture: 'data:image/gif;base64,' + gif
+        picture: 'data:image/gif;base64,' + gif,
+        twitter: {
+          username: config.get('twitterUsername'),
+          id: config.get('twitterId')
+        }
       }
     }, function(err) {
       if (err) throw err;
