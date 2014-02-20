@@ -17,9 +17,11 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  var key = config.get(config.get('target') === 'tv' ? 'tvApiKey' : 'apiKey');
+  var isTv = config.get('target') === 'tv';
+  var key = config.get(isTv ? 'tvApiKey' : 'apiKey');
+  var endpoint = config.get(isTv ? 'tvMeatEndpoint' : 'meatEndpoint');
   capture(config.get(), function(gif) {
-    request.post(config.get('meatEndpoint'), {
+    request.post(endpoint, {
       form: {
         apiKey: key,
         fingerprint: config.get('fingerprint'),
