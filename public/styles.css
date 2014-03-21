@@ -14,8 +14,7 @@ body, input, textarea {
 
 body {
   background:#fff;
-  background:
-  color:#888;
+  color:#555;
 }
 
 .wrapper {
@@ -29,33 +28,36 @@ h1 {
   text-transform:uppercase;
   font-size:2.8em;
   text-align:center;
-  margin:16px 0;
+  margin:16px 0 0 0;
+  color:#111;
 }
 
-input[type="submit"] {
+h3 {
+  font-size:1em;
+  font-weight:bold;
+  display:inline;
+}
+
+.button {
   background:#e22661;
   color:#fff;
   border:0;
-  display:inline-block;
+  display:block;
   border-radius:5px;
+  width:100%;
+  padding:10px;
+  margin-bottom:4px;
+  cursor:pointer;
+  text-decoration:none;
+  text-align:center;
 }
 
-input[type="submit"][disabled] {
+.button:hover, .button:focus {
+  background:#111;
+}
+
+.disabled .button {
   background:#888;
-}
-
-.interval {
-  font-size:.8em;
-  margin-bottom:16px;
-}
-
-.interval > input[type="number"] {
-  width:70px;
-  margin:0 10px;
-}
-
-.interval > input[type="submit"] {
-  padding:3px 6px;
 }
 
 .message {
@@ -63,11 +65,66 @@ input[type="submit"][disabled] {
   padding:10px;
   border:1px solid #000;
   border-radius:5px;
-  margin-bottom:8px;
+  margin:8px 0;
 }
 
-.send {
+#interval,
+#manual,
+.nav li {
+  display:none;
+}
+
+[data-pane="interval"] #interval,
+[data-pane="manual"] #manual,
+[data-pane="interval"] .nav-manual,
+[data-pane="manual"] .nav-interval {
   display:block;
-  padding:10px;
-  width:100%;
+}
+
+.nav {
+  list-style:none;
+  padding-bottom:8px;
+  border-bottom:1px solid #ddd;
+  margin-bottom:16px;
+}
+
+#interval .update-interval-submit,
+#interval .stop-interval,
+#interval.is-set .set-interval-submit {
+  display:none;
+}
+
+#interval.is-set .update-interval-submit,
+#interval.is-set .stop-interval {
+  display:block;
+}
+
+
+input[type="radio"] {
+  position:absolute;
+  left:-9999px;
+}
+
+label {
+  cursor:pointer;
+  display:inline-block;
+  margin-left:10px;
+  padding:3px 5px;
+  background:#ddd;
+  border-radius:5px;
+}
+
+label.selected {
+  background:#e22661;
+  color:#fff;
+  cursor:default;
+}
+
+.target {
+  margin-bottom:8px;
+  text-align:center;
+}
+
+.target-submit {
+  display:none;
 }

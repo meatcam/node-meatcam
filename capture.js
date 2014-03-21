@@ -9,15 +9,6 @@ module.exports = function(opts, callback) {
     return ('' + value).replace(/\s/g, '');
   });
 
-  function clean() {
-    try {
-      fs.unlinkSync(options.tempOutput);
-    } catch(e) {}
-    try {
-      fs.unlinkSync(options.tempMinified);
-    } catch(e) {}
-  }
-
   function base64() {
     fs.readFile(options.tempMinified, {
       encoding: 'base64'
@@ -31,7 +22,7 @@ module.exports = function(opts, callback) {
   function compress() {
     exec([
       'gifsicle -O2',
-      '-d', options.delay,
+      '-d' + options.delay,
       '-o', options.tempMinified,
       options.tempOutput
     ].join(' '), function(err) {
@@ -40,14 +31,13 @@ module.exports = function(opts, callback) {
     });
   }
 
-  clean();
   exec([
-    'avconv',
+    'avconv -y',
     '-f', 'video4linux2',
     '-ss', '0:0:1',
+    '-s', options.size,
     '-i', options.input,
     '-r', options.fps,
-    '-s', options.size,
     '-t', options.seconds,
     '-pix_fmt rgb24 -vf format=rgb8,format=rgb24',
     options.tempOutput

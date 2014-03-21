@@ -7,17 +7,56 @@ html
     meta(name='apple-mobile-web-app-captable', content='yes')
     link(rel='stylesheet', href='/styles.css', type='text/css')
 
-  body
+  body(data-pane="manual")
     .wrapper
       h1 Meatcam
+      
+      form.target(method='post', action='/target')
+        label.selected
+          input(type='radio', name='target', value='tv', checked="checked")
+          | tv
+        label
+          input(type='radio', name='target', value='intl')
+          | intl
+        label
+          input(type='radio', name='target', value='fr')
+          | fr
+        label
+          input(type='radio', name='target', value='es')
+          | es
+        label
+          input(type='radio', name='target', value='staging')
+          | staging
+        input.target-submit(type='submit', value='Submit')
 
-      form.interval(method='post', action'.')
-        label Interval (seconds):
-        input(type='number', name='interval', value='0', min='0', max='9999', step='1')
-        input(type='submit', value='Update')
+      ul.nav
+        li.nav-interval
+          a.button(href='#interval') Switch to Interval Mode
+        li.nav-manual
+          a.button(href='#manual') Switch to Manual Mode
 
-      form.update(method='post', action='/')
+      #interval
+        form.set-interval(method='post', action='/interval')
+          h3 Interval (seconds)
+          label
+            input(type='radio', name='interval', value=10000)
+            | 10
+          label
+            input(type='radio', name='interval', value=30000)
+            | 30
+          label.selected
+            input(type='radio', name='interval', value=60000, checked='checked')
+            | 60
+          input.message(type='text', name='message', maxlength='250', placeholder='What are you up to?')
+          input.set-interval-submit.button(type='submit', value='Set Interval')
+          input.update-interval-submit.button(type='submit', value='Update Interval')
+        form.stop-interval(method='post', action='/interval')
+          input(type='hidden', name='interval', value='0')
+          input.button(type='submit', value='Stop Interval')
+
+      form#manual(method='post', action='/')
         input.message(type='text', name='message', maxlength='250', placeholder='What are you up to?')
-        input.send(type='submit', value='Send Message')
+        input.button(type='submit', value='Send Message')
+
     script(src='/zepto.min.js')
     script(src='/scripts.js')

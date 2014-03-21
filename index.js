@@ -4,6 +4,8 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var request = require('request');
+var sender = require('./sender')(config);
+var interval = require('./interval')(config, sender);
 
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -17,26 +19,25 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  var isTv = config.get('target') === 'tv';
-  var key = config.get(isTv ? 'tvApiKey' : 'apiKey');
-  var endpoint = config.get(isTv ? 'tvMeatEndpoint' : 'meatEndpoint');
   capture(config.get(), function(gif) {
-    request.post(endpoint, {
-      form: {
-        apiKey: key,
-        fingerprint: config.get('fingerprint'),
-        message: req.body.message,
-        picture: 'data:image/gif;base64,' + gif,
-        twitter: {
-          username: config.get('twitterUsername'),
-          id: config.get('twitterId')
-        }
-      }
+    sender.send({
+      message: req.body.message,
+      picture: 'data:image/gif;base64,' + gif
     }, function(err) {
       if (err) throw err;
       res.redirect('/');
     });
   });
+});
+
+app.post('/interval', function(req, res) {
+  interval.update(req.body.interval, req.body.message);
+  res.send(200, {});
+});
+
+app.post('/target', function(req, res) {
+  sender.setTarget(req.body.target);
+  res.send(200, {});
 });
 
 app.listen(config.get('port'));
