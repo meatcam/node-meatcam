@@ -42,5 +42,8 @@
     if (hash) {
       $('body').attr('data-pane', hash);
     }
+    if (hash === 'manual') {
+      $('.stop-interval').submit();
+    }
   });
 })();
