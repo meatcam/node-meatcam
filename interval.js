@@ -37,7 +37,7 @@ module.exports = function(c, s) {
       var oldInterval = interval;
       interval = i;
       message = m;
-      if (oldInterval === interval) {
+      if (oldInterval !== interval) {
         runInterval();
       }
     }
