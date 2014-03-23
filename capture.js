@@ -15,7 +15,6 @@ module.exports = function(opts, callback) {
     }, function(err, data) {
       if (err) throw err;
       callback(data);
-      clean();
     });
   }
 
