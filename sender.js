@@ -19,7 +19,7 @@ module.exports = function(config) {
     es: 'https://es.meatspac.es',
     fr: 'https://fr.meatspac.es',
     intl: 'https://chat.meatspac.es',
-    staging: 'https://chat-staging.meatspac.es',
+    staging: 'http://chat-staging.meatspac.es',
     tv: 'https://meatspaces.tv/api/add/show'
   };
 
