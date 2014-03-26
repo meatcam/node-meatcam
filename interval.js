@@ -16,7 +16,7 @@ function send() {
       if (interval && elapsed >= interval) {
         send();
       }
-      else {
+      else if (interval) {
         timer = setTimeout(send, interval - elapsed);
       }
     });
