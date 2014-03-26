@@ -14,19 +14,24 @@ module.exports = function(config) {
   };
 
   var endpoints = {
-    es: 'https://es.meatspac.es/add/chat',
     fr: 'https://fr.meatspac.es/add/chat',
     intl: 'https://chat.meatspac.es/add/chat',
     staging: 'http://chat-staging.meatspac.es/add/chat',
     tv: 'https://meatspaces.tv/api/add/show'
   };
 
+  var apiKeys = {
+    fr: config.get('apiKey'),
+    intl: config.get('apiKey'),
+    staging: config.get('stagingApiKey'),
+    tv: config.get('tvApiKey')
+  };
+
   var methods = {
     send: function(userData, callback) {
-      var isTv = target === 'tv';
       var endpoint = endpoints[target];
       var apiData = {
-        apiKey: config.get(isTv ? 'tvApiKey' : 'apiKey')
+        apiKey: apiKeys[target]
       };
 
       sending = true;
