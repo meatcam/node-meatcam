@@ -16,10 +16,10 @@ module.exports = function(config) {
   };
 
   var endpoints = {
-    es: 'https://es.meatspac.es',
-    fr: 'https://fr.meatspac.es',
-    intl: 'https://chat.meatspac.es',
-    staging: 'http://chat-staging.meatspac.es',
+    es: 'https://es.meatspac.es/add/chat',
+    fr: 'https://fr.meatspac.es/add/chat',
+    intl: 'https://chat.meatspac.es/add/chat',
+    staging: 'http://chat-staging.meatspac.es/add/chat',
     tv: 'https://meatspaces.tv/api/add/show'
   };
 
@@ -59,7 +59,7 @@ module.exports = function(config) {
     }
     timer = setTimeout(methods.send({
       message: message,
-    }))
+    }));
   }
 
   return methods;
