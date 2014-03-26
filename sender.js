@@ -3,8 +3,6 @@ var _ = require('lodash');
 
 module.exports = function(config) {
   var target = 'tv';
-  var interval = 0;
-  var message = '';
   var sending = false;
 
   var defaults = {
@@ -42,25 +40,10 @@ module.exports = function(config) {
       });
     },
 
-    setInterval: function(i, m) {
-      interval = i;
-      message = m;
-      runInterval();
-    },
-
     setTarget: function(t) {
       target = t;
     }
   };
-
-  function runInterval() {
-    if (!interval) {
-      return;
-    }
-    timer = setTimeout(methods.send({
-      message: message,
-    }));
-  }
 
   return methods;
 };
