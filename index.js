@@ -31,7 +31,7 @@ app.post('/', function(req, res) {
 });
 
 app.post('/interval', function(req, res) {
-  interval.update(req.body.interval, req.body.message);
+  interval.update(parseInt(req.body.interval, 10), req.body.message);
   res.send(200, {});
 });
 
