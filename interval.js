@@ -5,6 +5,7 @@ var timer = -1;
 var startTime, sender, config;
 
 function send() {
+  console.log(timer);
   startTime = Date.now();
   capture(config.get(), function(gif) {
     sender.send({
