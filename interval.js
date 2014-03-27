@@ -1,4 +1,5 @@
-var capture = require('./capture');
+var Capture = require('meat-capture');
+var capture = (new Capture).capture;
 var interval = 0;
 var message = '';
 var timer = -1;
@@ -6,7 +7,8 @@ var startTime, sender, config;
 
 function send() {
   startTime = Date.now();
-  capture(config.get(), function(gif) {
+  capture(function(err, gif) {
+    if (err) throw err;
     sender.send({
       message: message,
       picture: 'data:image/gif;base64,' + gif

@@ -1,5 +1,6 @@
 var config = require('nconf').file('config.json');
-var capture = require('./capture');
+var Capture = require('meat-capture');
+var capture = (new Capture).capture;
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -19,7 +20,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  capture(config.get(), function(gif) {
+  capture(function(err, gif) {
+    if (err) throw err;
     sender.send({
       message: req.body.message,
       picture: 'data:image/gif;base64,' + gif

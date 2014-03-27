@@ -1,6 +1,6 @@
 {
   "name": "node-meatcam",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Drives a Meatcam on a Raspi",
   "main": "index.js",
   "scripts": {
@@ -21,12 +21,11 @@
   "homepage": "https://github.com/imakewebthings/node-meatcam",
   "dependencies": {
     "nconf": "~0.6.9",
-    "avconv": "~1.0.1",
-    "gifsicle": "~0.1.4",
     "express": "~3.4.8",
     "lodash": "~2.4.1",
     "jade": "~1.1.5",
     "nodemon": "~1.0.14",
-    "request": "~2.33.0"
+    "request": "~2.33.0",
+    "meat-capture": "0.0.2"
   }
 }
