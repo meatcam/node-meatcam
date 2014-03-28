@@ -3,17 +3,15 @@ var capture = (new Capture).capture;
 var interval = 0;
 var message = '';
 var timer = -1;
-var startTime, sender, config;
+var startTime, poster;
 
 function send() {
   startTime = Date.now();
   capture(function(err, gif) {
     if (err) throw err;
-    sender.send({
-      message: message,
-      picture: 'data:image/gif;base64,' + gif
-    }, function() {
+    poster.send(message, gif, function(err) {
       var elapsed = Date.now() - startTime;
+      if (err) throw err;
       if (interval && elapsed >= interval) {
         send();
       }
@@ -31,9 +29,8 @@ function runInterval() {
   }
 }
 
-module.exports = function(c, s) {
-  config = c;
-  sender = s;
+module.exports = function(p) {
+  poster = p;
   return {
     update: function(i, m) {
       var oldInterval = interval;

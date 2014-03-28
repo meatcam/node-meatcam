@@ -26,6 +26,7 @@
     "jade": "~1.1.5",
     "nodemon": "~1.0.14",
     "request": "~2.33.0",
-    "meat-capture": "0.0.5"
+    "meat-capture": "0.0.5",
+    "meat-post": "0.0.1"
   }
 }
