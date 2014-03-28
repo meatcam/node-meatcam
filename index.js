@@ -2,12 +2,12 @@ var config = require('nconf').file('config.json');
 var express = require('express');
 var app = express();
 var path = require('path');
-var request = require('request');
-var Capture = require('meat-capture');
-var capture = (new Capture).capture;
+var Capturer = require('meat-capture');
+var capturer = new Capturer();
 var Poster = require('meat-post');
 var poster = new Poster(config.get());
-var interval = require('./interval')(poster);
+var Interval = require('meat-interval');
+var interval = new Interval(capturer, poster);
 
 app.set('views', path.resolve(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  capture(function(err, gif) {
+  capturer(function(err, gif) {
     if (err) throw err;
     poster.send(req.body.message, gif, function(err) {
       if (err) throw err;
