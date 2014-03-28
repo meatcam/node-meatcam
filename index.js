@@ -21,7 +21,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/', function(req, res) {
-  capturer(function(err, gif) {
+  capturer.capture(function(err, gif) {
     if (err) throw err;
     poster.send(req.body.message, gif, function(err) {
       if (err) throw err;
