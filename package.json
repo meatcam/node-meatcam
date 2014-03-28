@@ -27,6 +27,6 @@
     "nodemon": "~1.0.14",
     "meat-capture": "0.0.5",
     "meat-post": "0.0.2",
-    "meat-interval": "0.0.1"
+    "meat-interval": "0.0.2"
   }
 }
