@@ -25,7 +25,7 @@
     "lodash": "~2.4.1",
     "jade": "~1.1.5",
     "nodemon": "~1.0.14",
-    "meat-capture": "0.0.5",
+    "meat-capture": "0.0.6",
     "meat-post": "0.0.2",
     "meat-interval": "0.0.3"
   }
